@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:prueba_tecnica/screens/widgets/cat_list.dart';
 import 'package:prueba_tecnica/services/%20api_service.dart';
 
 import '../models/cat_model.dart';
-import 'cat_detail_screen.dart';
 
-// NOTA PARA EL REVISOR:
+// NOTA:
 //
 // La prueba técnica incluye una instrucción que sugiere usar un manejador de estado,
 // y otra que pide específicamente usar FutureBuilder.
@@ -102,29 +102,11 @@ class HomeScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return const Center(child: Text('Error al cargar'));
-          } else if (!snapshot.hasData) {
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No hay datos'));
           }
 
-          final cats = snapshot.data!;
-          return ListView.builder(
-            itemCount: cats.length,
-            itemBuilder: (context, index) {
-              final cat = cats[index];
-              return ListTile(
-                title: Text(cat.name),
-                subtitle: Text(cat.origin),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => CatDetailScreen(cat: cat),
-                    ),
-                  );
-                },
-              );
-            },
-          );
+          return CatList(cats: snapshot.data!);
         },
       ),
     );
