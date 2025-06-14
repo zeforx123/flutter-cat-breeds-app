@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_tecnica/bloc/cat_bloc.dart';
-import 'package:prueba_tecnica/screens/widgets/cat_list.dart';
+import 'package:prueba_tecnica/screens/empty_view.dart';
+import 'package:prueba_tecnica/screens/widgets/cat_list_view.dart';
+import 'package:prueba_tecnica/screens/widgets/error_view.dart';
+import 'package:prueba_tecnica/screens/widgets/loading_view.dart';
 
 import '../models/cat_model.dart';
 
@@ -106,14 +109,16 @@ class _HomeScreenState extends State<HomeScreen> {
         future: _bloc.fetchCatBreeds(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return const LoadingView();
           } else if (snapshot.hasError) {
-            return const Center(child: Text('Error al cargar'));
+            return const ErrorView(
+              message: "Hubo un error",
+            );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No hay datos'));
+            return const EmptyView(message: "No hay datos disponibles");
           }
 
-          return CatList(cats: snapshot.data!);
+          return CatListView(cats: snapshot.data!);
         },
       ),
     );

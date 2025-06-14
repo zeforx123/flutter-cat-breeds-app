@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_tecnica/models/cat_model.dart';
 
-class CatDetailContent extends StatelessWidget {
+class CatDetailContentView extends StatelessWidget {
   final CatModel cat;
 
-  const CatDetailContent({super.key, required this.cat});
+  const CatDetailContentView({super.key, required this.cat});
 
   @override
   Widget build(BuildContext context) {

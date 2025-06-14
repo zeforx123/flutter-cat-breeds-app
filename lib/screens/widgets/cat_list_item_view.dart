@@ -3,10 +3,10 @@ import 'package:prueba_tecnica/models/cat_model.dart';
 import 'package:prueba_tecnica/router/paths/routes.dart';
 import 'package:prueba_tecnica/router/route_page_arguments.dart';
 
-class CatListItem extends StatelessWidget {
+class CatListItemView extends StatelessWidget {
   final CatModel cat;
 
-  const CatListItem({super.key, required this.cat});
+  const CatListItemView({super.key, required this.cat});
 
   @override
   Widget build(BuildContext context) {

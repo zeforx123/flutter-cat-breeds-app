@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_tecnica/router/route_page_arguments.dart';
-import 'package:prueba_tecnica/screens/widgets/cat_detail_content.dart';
+import 'package:prueba_tecnica/screens/widgets/cat_detail_content_view.dart';
 
-class CatDetailScreen extends StatelessWidget {
+class CatDetailView extends StatelessWidget {
   final CatDetailScreenArguments arguments;
 
-  const CatDetailScreen({
+  const CatDetailView({
     super.key,
     required this.arguments,
   });
@@ -18,7 +18,7 @@ class CatDetailScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: CatDetailContent(cat: arguments.cat),
+        child: CatDetailContentView(cat: arguments.cat),
       ),
     );
   }
