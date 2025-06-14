@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prueba_tecnica/bloc/cat_bloc.dart';
 import 'package:prueba_tecnica/screens/widgets/cat_list.dart';
-import 'package:prueba_tecnica/services/%20api_service.dart';
 
 import '../models/cat_model.dart';
 
@@ -88,15 +88,22 @@ import '../models/cat_model.dart';
 
 // ACA ESTOY USANDO EL FutureBuilder PARA LA CARGA
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final CatBloc _bloc = CatBloc();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Razas de Gatos')),
       body: FutureBuilder<List<CatModel>>(
-        future: ApiService().fetchCatBreeds(),
+        future: _bloc.fetchCatBreeds(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

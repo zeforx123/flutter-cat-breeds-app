@@ -24,6 +24,10 @@ class CatBloc {
     }
   }
 
+  fetchCatBreeds() {
+    return _apiService.fetchCatBreeds();
+  }
+
   void dispose() {
     _catController.close();
     _loadingController.close();
